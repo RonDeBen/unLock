@@ -41,8 +41,13 @@ public class LineSegment : MonoBehaviour {
         lineSegment.SetPosition(1, endpoint);
     }
 
+
+    /// <summary>
+    /// Stops drawing the active segment and makes it invisible
+    /// </summary>
     public static void StopAllDrawing()
     {
+        activeSegment.lineSegment.SetVertexCount(0);
         activeSegment = null;
     }
 }

@@ -33,6 +33,7 @@ public class PlayerController : MonoBehaviour {
 	}
 	
 	void Update () {
+
 		if(platform == RuntimePlatform.Android || platform == RuntimePlatform.IPhonePlayer){
 			//do later
 		}
