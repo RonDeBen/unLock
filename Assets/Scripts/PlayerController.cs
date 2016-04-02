@@ -24,6 +24,8 @@ public class PlayerController : MonoBehaviour {
 	private List<int> edges = new List<int>();
 	private List<int> winningEdges = new List<int>();
 
+	private GameObject[] nodeObjs;
+
 	private int[] edgesIn;
 
 	public GridMaker GM;
@@ -40,6 +42,7 @@ public class PlayerController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {	
 		edgesIn = new int[GM.columnCount * GM.columnCount];
+		GameObject[] nodeObjs = GameObject.FindGameObjectsWithTag("node");
 	}
 	
 	void Update () {
@@ -74,7 +77,14 @@ public class PlayerController : MonoBehaviour {
 				if(nodes[nodes.Count - 1] != node.number){//the new node is not the same as the last node
 					if(Mathf.Abs(node.row - nodeCoords[nodeCoords.Count - 1].x) <= 1 && Mathf.Abs(node.column - nodeCoords[nodeCoords.Count - 1].y) <= 1){//the node is not adjacent
 						if(!edges.Contains(primes[node.number] * primes[nodes[nodes.Count-1]])){//if the edge doesn't already exist
-							AddNode(node);
+							if(isSolving){
+								if(node.edgesIn > 0){
+									AddNode(node);
+								}
+							}
+							else{
+								AddNode(node);
+							}
 						}
 					}
 				}
@@ -90,7 +100,7 @@ public class PlayerController : MonoBehaviour {
 
 
 		}
-		
+
 		if(!isSolving){//the puzzle maker is playing
 			node.edgesIn++;
 			edgesIn[node.number]++;
@@ -135,9 +145,10 @@ public class PlayerController : MonoBehaviour {
 		isSolving = true;
 	}
 
-	void PopulateEdgesIn(){
-		GameObject[] nodeObjs = GameObject.FindGameObjectsWithTag("node");
+	void CheckNonzeroNodeNumbers(){
+	}
 
+	void PopulateEdgesIn(){
 		for(int k = 0; k < nodeObjs.Length; k ++){
 			Node thisNode = nodeObjs[k].GetComponent<Node>();
 			thisNode.texMexsh.text = edgesIn[thisNode.number].ToString();
