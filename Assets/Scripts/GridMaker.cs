@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class GridMaker : MonoBehaviour {
 
@@ -11,6 +13,13 @@ public class GridMaker : MonoBehaviour {
             this.y = y;
         }
     }
+
+    [HideInInspector]
+    public int startNode, endNode;
+    [HideInInspector]
+    public int[] edgesEntering;
+    [HideInInspector]
+    public List<int> edges = new List<int>();
 
 
 	public GameObject topLeft, bottomRight;
@@ -43,7 +52,6 @@ public class GridMaker : MonoBehaviour {
 				node.row = row;
 				node.column = column;
 				Instantiate(nodeObject, nodePos, Quaternion.identity);
-				Debug.Log(number);
 				number++;
 			}
 		}

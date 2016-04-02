@@ -7,6 +7,9 @@ public class LineSegment : MonoBehaviour {
     public static LineSegment activeSegment = null;
     public static List<LineSegment> drawnLines = new List<LineSegment>();
 
+    public Material line_mat;
+    public float line_width;
+
     public Vector3 startpoint;
     public LineRenderer lineSegment;
     private bool isDrawing = false;
@@ -18,7 +21,9 @@ public class LineSegment : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+        if(isDrawing && Input.GetMouseButton(0)){
+            lineSegment.SetPosition(1, new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y, 0));
+        }
 	}
 
     public IEnumerator StartDrawing()
@@ -28,11 +33,11 @@ public class LineSegment : MonoBehaviour {
         isDrawing = true;
         lineSegment.SetPosition(0, startpoint);
         activeSegment = this;
-        while (isDrawing)
-        {
-            lineSegment.SetPosition(1, new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y, 0));
-            yield return null;
-        }
+        isDrawing = true;
+        lineSegment.material = line_mat;
+        lineSegment.SetWidth(line_width, line_width);
+        lineSegment.SetPosition(1, new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y, 0));
+        yield return null;
     }
 
     public void FinishDrawing(Vector3 endpoint)
@@ -49,5 +54,13 @@ public class LineSegment : MonoBehaviour {
     {
         activeSegment.lineSegment.SetVertexCount(0);
         activeSegment = null;
+    }
+
+    public static void RemoveAllLines(){
+        GameObject[] segments = GameObject.FindGameObjectsWithTag("lineSegment");
+
+        for(int k = 0; k < segments.Length; k ++){
+            Destroy(segments[k]);
+        }
     }
 }
