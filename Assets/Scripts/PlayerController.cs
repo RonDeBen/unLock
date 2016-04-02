@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using VolumetricLines;
 
 public class PlayerController : MonoBehaviour {
 
@@ -19,9 +20,11 @@ public class PlayerController : MonoBehaviour {
 	private List<Vector3> nodePoints = new List<Vector3>();
 	private List<Coords> nodeCoords = new List<Coords>();
 
+	private Vector3[] volLinePoints;
+
 	private List<int> edges = new List<int>();
 
-	private LineRenderer lr;
+	private VolumetricLineStripBehavior volLineStrip;
 
 	public GridMaker GM;
 
@@ -31,7 +34,8 @@ public class PlayerController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {	
-		lr = gameObject.GetComponent<LineRenderer>();
+		volLineStrip = gameObject.GetComponent<VolumetricLineStripBehavior>();
+		volLineStrip.SetLineColorAtStart = true;
 	}
 	
 	void Update () {
@@ -45,7 +49,8 @@ public class PlayerController : MonoBehaviour {
 				RaycastHit2D hit = Physics2D.Raycast(worldPoint,Vector2.zero);
 
 				if (nodePoints.Count != 0){
-					lr.SetPosition(nodePoints.Count - 1, worldPoint);
+					volLinePoints[volLinePoints.Length - 1] = worldPoint;
+					volLineStrip.UpdateLineVertices(volLinePoints);
 				}
 
 				CheckPosition(hit);
@@ -62,7 +67,7 @@ public class PlayerController : MonoBehaviour {
 			}
 			else{
 				if(nodes[nodes.Count - 1] != node.number){//the new node is not the same as the last node
-					if(Mathf.Abs(node.row - nodeCoords[nodeCoords.Count - 1].x) == 1 || Mathf.Abs(node.column - nodeCoords[nodeCoords.Count - 1].y) == 1){//the node is not adjacent
+					if(Mathf.Abs(node.row - nodeCoords[nodeCoords.Count - 1].x) <= 1 && Mathf.Abs(node.column - nodeCoords[nodeCoords.Count - 1].y) <= 1){//the node is not adjacent
 						if(!edges.Contains(primes[node.number] * primes[nodes[nodes.Count-1]])){//if the edge doesn't already exist
 							AddNode(node);
 						}
@@ -83,24 +88,10 @@ public class PlayerController : MonoBehaviour {
 		nodePoints.Add(node.transform.position);
 		nodeCoords.Add(new Coords(node.row, node.column));
 
-		lr.SetVertexCount(nodePoints.Count + 1);
+		volLinePoints = new Vector3[nodePoints.Count + 1];
 		for (int k = 0; k < nodePoints.Count; k++){
-			lr.SetPosition(k, nodePoints[k]);
+			volLinePoints[k] = nodePoints[k];
 		}
 	}
-
-	// private int[] GetPrimes(int order){
-	// 	int[] primes = new int[order];
-	// 	primes[0] = 1;
-
-	// 	int last_product = 1;
-
-	// 	for(int k = 1; k < order; k++){
-	// 		primes[k] = last_product + 1;
-	// 		last_product *= primes[k];
-	// 		Debug.Log("prime: " + primes[k]);
-	// 	}
-	// 	return primes;
-	// }
 
 }
