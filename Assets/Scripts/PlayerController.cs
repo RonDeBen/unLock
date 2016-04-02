@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using VolumetricLines;
 
 public class PlayerController : MonoBehaviour {
 
@@ -20,11 +19,8 @@ public class PlayerController : MonoBehaviour {
 	private List<Vector3> nodePoints = new List<Vector3>();
 	private List<Coords> nodeCoords = new List<Coords>();
 
-	private Vector3[] volLinePoints;
 
 	private List<int> edges = new List<int>();
-
-	private VolumetricLineStripBehavior volLineStrip;
 
 	public GridMaker GM;
 
@@ -34,8 +30,6 @@ public class PlayerController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {	
-		volLineStrip = gameObject.GetComponent<VolumetricLineStripBehavior>();
-		volLineStrip.SetLineColorAtStart = true;
 	}
 	
 	void Update () {
@@ -48,10 +42,6 @@ public class PlayerController : MonoBehaviour {
 				Vector2 worldPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 				RaycastHit2D hit = Physics2D.Raycast(worldPoint,Vector2.zero);
 
-				if (nodePoints.Count != 0){
-					volLinePoints[volLinePoints.Length - 1] = worldPoint;
-					volLineStrip.UpdateLineVertices(volLinePoints);
-				}
 
 				CheckPosition(hit);
 
@@ -88,10 +78,14 @@ public class PlayerController : MonoBehaviour {
 		nodePoints.Add(node.transform.position);
 		nodeCoords.Add(new Coords(node.row, node.column));
 
-		volLinePoints = new Vector3[nodePoints.Count + 1];
-		for (int k = 0; k < nodePoints.Count; k++){
-			volLinePoints[k] = nodePoints[k];
-		}
+        //stops current line segment
+        if(LineSegment.activeSegment != null)
+        {
+            LineSegment.activeSegment.FinishDrawing(node.transform.position);
+        }
+
+        node.DrawSegment();//Draws a new line segment
+
 	}
 
 }
