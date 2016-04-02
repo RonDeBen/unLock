@@ -1,0 +1,791 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"box_",
+				"box_height"
+			],
+			[
+				"column",
+				"columnCount"
+			],
+			[
+				"number",
+				"number_of_working_elements"
+			],
+			[
+				"high",
+				"highest_order"
+			],
+			[
+				"setpixel",
+				"SetPixel(int x, int y, Color color)	void"
+			],
+			[
+				"Colo",
+				"Color(float r, float g, float b, float a)	Color(float r, float g, float b, float a)"
+			],
+			[
+				"r",
+				"renderer	Component { get; }"
+			],
+			[
+				"middl",
+				"middleLane	GameObject"
+			],
+			[
+				"getchan",
+				"GetChannelWidth()	float"
+			],
+			[
+				"blac",
+				"BlackmanHarris	FFTWindow"
+			],
+			[
+				"guit",
+				"GUIText	GUIText"
+			],
+			[
+				"pi",
+				"maxPitch	float"
+			],
+			[
+				"music",
+				"MusicAnalyzerGameObject	GameObject"
+			],
+			[
+				"squ",
+				"Square2	Waveform"
+			],
+			[
+				"winim",
+				"winImageObj	Image"
+			],
+			[
+				"Rigid",
+				"Rigidbody2D	Rigidbody2D"
+			],
+			[
+				"del",
+				"DeleteKey(string key)	void"
+			],
+			[
+				"gameO",
+				"gameOverText	Text"
+			],
+			[
+				"BoxCo",
+				"BoxCollider2D	BoxCollider2D"
+			],
+			[
+				"GetCompon",
+				"GetComponent<T>()	T"
+			],
+			[
+				"get",
+				"GetComponentsInChildren<T>()	T[]"
+			],
+			[
+				"getcompo",
+				"GetComponent<T>()	T"
+			],
+			[
+				"Start",
+				"StartCoroutine(IEnumerator routine)	Coroutine"
+			],
+			[
+				"Uni",
+				"UnityEngine	UnityEngine"
+			],
+			[
+				"m",
+				"m_FacingRight	bool"
+			],
+			[
+				"fin",
+				"FindWithTag(string tag)	GameObject"
+			],
+			[
+				"Rigib",
+				"Rigidbody2D	Rigidbody2D"
+			],
+			[
+				"jump",
+				"jumpNought	float"
+			],
+			[
+				"Vect",
+				"Vector3	Vector3"
+			],
+			[
+				"Box",
+				"BoxCollider2D	BoxCollider2D"
+			],
+			[
+				"GetCom",
+				"GetComponent<T>()	T"
+			],
+			[
+				"beanlo",
+				"beanLocationObjects	GameObject[]"
+			],
+			[
+				"bean",
+				"beanLocationObjects	GameObject[]"
+			],
+			[
+				"beanloca",
+				"BeanLocationObjects	GameObject"
+			],
+			[
+				"getco",
+				"GetComponent<T>()	T"
+			],
+			[
+				"rigi",
+				"Rigidbody2D	Rigidbody2D"
+			],
+			[
+				"ene",
+				"enemyObjects	GameObject[]"
+			],
+			[
+				"sapwn",
+				"spawnPointObjects	GameObject[]"
+			],
+			[
+				"spawnp",
+				"spawnPointObjects	GameObject[]"
+			],
+			[
+				"Rigi",
+				"Rigidbody2D	Rigidbody2D"
+			],
+			[
+				"GetC",
+				"GetComponent<T>()	T"
+			],
+			[
+				"rigidbo",
+				"rigidbody2D	Component { get; }"
+			],
+			[
+				"rigid",
+				"rigidbody2D	Component { get; }"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "Assets/Scripts/GridMaker.cs",
+			"settings":
+			{
+				"buffer_size": 973,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 87.0,
+		"last_filter": "install",
+		"selected_items":
+		[
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 449.0
+	},
+	"console":
+	{
+		"height": 126.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '2915d1851351e5ee549c20394736b442' + '8bc59f460fa1548d1514676163dafc88'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by) "
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/Users/rondebenedetti/personal/games/unLock",
+		"/Users/rondebenedetti/personal/games/unLock/Assets",
+		"/Users/rondebenedetti/personal/games/unLock/Assets/Scripts"
+	],
+	"file_history":
+	[
+		"/Users/rondebenedetti/Library/Application Support/Sublime Text 3/Packages/User/JSON.sublime-settings",
+		"/Users/rondebenedetti/personal/games/unLock/unlock.sublime-project",
+		"/Users/rondebenedetti/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/Users/rondebenedetti/personal/games/unLock/unLock.sln",
+		"/Users/rondebenedetti/personal/games/unLock/Assets/Scripts/PlayerController.cs",
+		"/Users/rondebenedetti/personal/games/unLock/Assets/Scripts/GridMaker.cs",
+		"/Users/rondebenedetti/personal/school/math/abstract_algebra/direct_sums.rb",
+		"/Users/rondebenedetti/personal/school/math/abstract_algebra/mega_matrix.rb",
+		"/Users/rondebenedetti/personal/games/beat/Assets/Scripts/MeasureController.cs",
+		"/Users/rondebenedetti/personal/games/beat/Assets/Scripts/MusicAnalyzer.cs",
+		"/Users/rondebenedetti/personal/games/beat/Assets/Scripts/Channel.cs",
+		"/Users/rondebenedetti/personal/games/beat/Assets/Scripts/GenerateLayout.cs",
+		"/Users/rondebenedetti/personal/games/beat/Assets/Scripts/ChannelManager.cs",
+		"/Users/rondebenedetti/personal/games/beat/Assets/Scripts/HurdleController.cs",
+		"/Users/rondebenedetti/personal/games/beat/Assets/Scripts/MusicMiddleware.cs",
+		"/Users/rondebenedetti/personal/games/beat/Assets/Scripts/Metronome.cs",
+		"/Users/rondebenedetti/personal/games/beat/Assets/Scripts/LaneController.cs",
+		"/Users/rondebenedetti/personal/games/Koffee/Assets/Scripts/EnemyController.cs",
+		"/Users/rondebenedetti/personal/school/CSC660_Calendar/config/database.yml",
+		"/Users/rondebenedetti/personal/games/Koffee/Assets/Scripts/MyBean.cs",
+		"/Users/rondebenedetti/personal/games/Koffee/Assets/Scripts/MusicMiddleware.cs",
+		"/Users/rondebenedetti/personal/games/Koffee/Assets/Scripts/PlayerController.cs",
+		"/Users/rondebenedetti/personal/games/Koffee/Assets/Scripts/CoffeeScriptHueHueHue.cs",
+		"/Users/rondebenedetti/personal/games/Koffee/Assets/Scripts/CameraFollow.cs",
+		"/Users/rondebenedetti/personal/games/Koffee/Assets/Scripts/Score.cs",
+		"/Users/rondebenedetti/Documents/Ron De Benedetti.txt",
+		"/Users/rondebenedetti/personal/school/weather/weather.pl",
+		"/Users/rondebenedetti/personal/school/weather/weather.py",
+		"/Users/rondebenedetti/personal/school/blackjack/app/controllers/registrations_controller.rb",
+		"/Users/rondebenedetti/personal/school/blackjack/lib/tasks/generate.rake",
+		"/Users/rondebenedetti/Documents/Visual Studio 2013/Projects/Blackjack/Blackjack/App.config",
+		"/Users/rondebenedetti/Documents/Visual Studio 2013/Projects/Blackjack/Blackjack/RequestManager.cs",
+		"/Users/rondebenedetti/personal/school/blackjack/Gemfile",
+		"/Users/rondebenedetti/personal/school/blackjack/config/environment.rb",
+		"/Users/rondebenedetti/personal/school/blackjack/config/routes.rb",
+		"/Users/rondebenedetti/personal/school/blackjack/app/controllers/users_controller.rb",
+		"/Users/rondebenedetti/Desktop/Chapter_17_Homework_Ron De Benedetti.txt",
+		"/var/log/system.log",
+		"/Users/rondebenedetti/personal/school/CSC660_Calendar/app/views/tasks/_task.json.jbuilder",
+		"/Users/rondebenedetti/personal/school/CSC660_Calendar/app/views/tasks/index.json.jbuilder",
+		"/Users/rondebenedetti/personal/school/blackjack/app/controllers/sessions_controller.rb",
+		"/Users/rondebenedetti/personal/school/blackjack/app/helpers/application_helper.rb",
+		"/Users/rondebenedetti/personal/school/blackjack/app/views/registrations/new.html.haml",
+		"/Users/rondebenedetti/personal/school/blackjack/app/models/user.rb",
+		"/Users/rondebenedetti/personal/school/blackjack/db/migrate/20151123155149_devise_create_users.rb",
+		"/Users/rondebenedetti/personal/school/advisorx/Gemfile",
+		"/Users/rondebenedetti/.rvm/gems/ruby-2.2.1/extensions/x86_64-darwin-14/2.2.0-static/puma-2.11.2/mkmf.log",
+		"/Users/rondebenedetti/personal/games/Koffee/Assets/Scripts/EnemySpawner.cs",
+		"/Users/rondebenedetti/Documents/Visual Studio 2013/Projects/Blackjack/Blackjack/Form1.cs",
+		"/Users/rondebenedetti/personal/school/blackjack/app/views/decks/_card.json.jbuilder",
+		"/Users/rondebenedetti/Desktop/transcript/README.txt",
+		"/Users/rondebenedetti/Desktop/transcript/parse.rb",
+		"/Users/rondebenedetti/Desktop/transcript/OUTPUT.txt",
+		"/Users/rondebenedetti/Desktop/README.txt",
+		"/Users/rondebenedetti/personal/school/blackjack/app/models/deck.rb",
+		"/Users/rondebenedetti/personal/games/Koffee/.git/MERGE_MSG",
+		"/Users/rondebenedetti/personal/games/Koffee/Assets/Scripts/Spring.cs",
+		"/Users/rondebenedetti/personal/games/Koffee/Assets/Scripts/BeanController.cs",
+		"/Users/rondebenedetti/.gitconfig",
+		"/Users/rondebenedetti/personal/games/Koffee/Assets/Scripts/BeanSpawner.cs",
+		"/Users/rondebenedetti/personal/games/Koffee/Assets/Scripts/Mathy.cs",
+		"/Users/rondebenedetti/personal/games/Koffee/koffee.sublime-project",
+		"/Users/rondebenedetti/Library/Application Support/Sublime Text 3/Packages/User/Default (OSX).sublime-keymap",
+		"/Users/rondebenedetti/personal/games/Koffee/.gitignore",
+		"/Users/rondebenedetti/personal/school/CSC660_Calendar/config/routes.rb",
+		"/Users/rondebenedetti/personal/school/CSC660_Calendar/app/controllers/tasks_controller.rb",
+		"/Users/rondebenedetti/Downloads/Amp Design.docx",
+		"/Users/rondebenedetti/personal/school/CSC660_Calendar/app/models/task.rb",
+		"/Users/rondebenedetti/personal/games/beat/Assets/Scripts/RunnerController.cs",
+		"/Users/rondebenedetti/Library/Application Support/Sublime Text 3/Packages/Default/Default (OSX).sublime-keymap",
+		"/Users/rondebenedetti/personal/games/beat/beat.sublime-project"
+	],
+	"find":
+	{
+		"height": 25.0
+	},
+	"find_in_files":
+	{
+		"height": 93.0,
+		"where_history":
+		[
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			".sublimeproject",
+			"column",
+			"row",
+			"blank_array",
+			"elements",
+			"debug.log",
+			"cocks",
+			"setdimensions",
+			"height",
+			"coords",
+			"fretObj",
+			"mute",
+			"samples",
+			"channelwidth",
+			"lanewidth",
+			"setdimension",
+			"lanewidth",
+			"maxPitch",
+			"analyzesound",
+			"square1music",
+			"startfake",
+			"startfakemusic",
+			"startfake",
+			"qsamples",
+			"fsample",
+			"reset",
+			"threshold",
+			"debug.log",
+			"pitch",
+			"analyze",
+			"update",
+			"AnalyzeSound",
+			"square1",
+			"console",
+			"debug",
+			"enum",
+			"resetDeltaPitch",
+			"deltaPitch",
+			"DeltaPitch",
+			"deltaPitch",
+			"float[]",
+			"get",
+			"getS",
+			"square1",
+			"samples",
+			"speed",
+			"application.loadlevel",
+			"application",
+			"mathf",
+			"loopSound",
+			"final",
+			"Flip()",
+			"newInstance",
+			"use",
+			"0:2",
+			"with lines,",
+			",",
+			"txt",
+			"csv",
+			"txt",
+			"surrenderButton.Enabled = false;\n                    hitButton.Enabled = false;\n                    standButton.Enabled = false;",
+			"cardvalues",
+			"render",
+			"me",
+			"phone_number",
+			"pin",
+			"username",
+			"GameObject",
+			"speed",
+			"canvasColor",
+			"canvasObj",
+			"ontriggerenter2d",
+			"public",
+			"originalCamPos",
+			"debug.log",
+			"oncollisionenter",
+			"ontrigger",
+			"timeWeight",
+			"debug.log",
+			"nextEnemy",
+			"beatNumberWeight",
+			"GetComponent<Rigidbody2D>()",
+			"rigidbody",
+			"GetKeyDown",
+			"GetKey",
+			"out",
+			"ctrl+b",
+			"ctrl+t",
+			"alt+k",
+			"ctrl+k",
+			"ctrl+b",
+			"super+b"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "Assets/Scripts/GridMaker.cs",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 973,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								87,
+								87
+							]
+						],
+						"settings":
+						{
+							"apply_syntax_touched": true,
+							"oops":
+							{
+								"19,24": "Using directive is not used by code and can be removed safely.",
+								"206,218": "The private field 'centerPoints' is never assigned"
+							},
+							"syntax": "Packages/Unity3D/UnityC#.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 25.0
+	},
+	"input":
+	{
+		"height": 33.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 100.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.variable_get":
+	{
+		"height": 100.0
+	},
+	"pinned_build_system": "",
+	"project": "unlock.sublime-project",
+	"replace":
+	{
+		"height": 46.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"fret",
+				"Assets/Scripts/Fret.cs"
+			],
+			[
+				"music",
+				"Assets/Scripts/MusicAnalyzer.cs"
+			],
+			[
+				"chann",
+				"Assets/Scripts/Channel.cs"
+			],
+			[
+				"chan",
+				"Assets/Scripts/ChannelManager.cs"
+			],
+			[
+				"hurld",
+				"Assets/Scripts/HurdleController.cs"
+			],
+			[
+				"musica",
+				"Assets/Scripts/MusicAnalyzer.cs"
+			],
+			[
+				"channel",
+				"Assets/Scripts/Channel.cs"
+			],
+			[
+				"lanecon",
+				"Assets/Scripts/LaneController.cs"
+			],
+			[
+				"enemycon",
+				"Assets/Scripts/EnemyController.cs"
+			],
+			[
+				"data",
+				"config/database.yml"
+			],
+			[
+				"mbyean",
+				"Assets/Scripts/MyBean.cs"
+			],
+			[
+				"score",
+				"Assets/Scripts/Score.cs"
+			],
+			[
+				"playercon",
+				"Assets/Scripts/PlayerController.cs"
+			],
+			[
+				"regist",
+				"Blackjack/RegistrationForm.cs"
+			],
+			[
+				"genera",
+				"lib/tasks/generate.rake"
+			],
+			[
+				"config",
+				"Blackjack/App.config"
+			],
+			[
+				"deck.",
+				"app/models/deck.rb"
+			],
+			[
+				"roomscon",
+				"app/controllers/rooms_controller.rb"
+			],
+			[
+				"routes",
+				"config/routes.rb"
+			],
+			[
+				"app.",
+				"Blackjack/App.config"
+			],
+			[
+				"request",
+				"Blackjack/RequestManager.cs"
+			],
+			[
+				"envior",
+				"config/environment.rb"
+			],
+			[
+				"gemf",
+				"Gemfile"
+			],
+			[
+				"rou",
+				"config/routes.rb"
+			],
+			[
+				"gener",
+				"lib/tasks/generate.rake"
+			],
+			[
+				"us",
+				"app/models/user.rb"
+			],
+			[
+				"applicationhe",
+				"app/helpers/application_helper.rb"
+			],
+			[
+				"route",
+				"config/routes.rb"
+			],
+			[
+				"gem",
+				"Gemfile"
+			],
+			[
+				"player",
+				"Assets/Scripts/PlayerController.cs"
+			],
+			[
+				"enem",
+				"Assets/Scripts/EnemySpawner.cs"
+			],
+			[
+				"deck",
+				"app/models/deck.rb"
+			],
+			[
+				"deckcon",
+				"app/controllers/decks_controller.rb"
+			],
+			[
+				"gen",
+				"lib/tasks/generate.rake"
+			],
+			[
+				"mybea",
+				"Assets/Scripts/MyBean.cs"
+			],
+			[
+				"playerocn",
+				"Assets/Scripts/PlayerController.cs"
+			],
+			[
+				"musi",
+				"Assets/Scripts/MusicMiddleware.cs"
+			],
+			[
+				"coffescri",
+				"Assets/Scripts/CoffeeScriptHueHueHue.cs"
+			],
+			[
+				"coffescrip",
+				"Assets/Scripts/CoffeeScriptHueHueHue.cs"
+			],
+			[
+				"spring",
+				"Assets/Scripts/Spring.cs"
+			],
+			[
+				"enemyspa",
+				"Assets/Scripts/EnemySpawner.cs"
+			],
+			[
+				"enemy",
+				"Assets/Scripts/EnemyController.cs"
+			],
+			[
+				"coffescr",
+				"Assets/Scripts/CoffeeScriptHueHueHue.cs"
+			],
+			[
+				"mybean",
+				"Assets/Scripts/MyBean.cs"
+			],
+			[
+				"coffeescrip",
+				"Assets/Scripts/CoffeeScriptHueHueHue.cs"
+			],
+			[
+				"camera",
+				"Assets/Scripts/CameraFollow.cs"
+			],
+			[
+				"myb",
+				"Assets/Scripts/MyBean.cs"
+			],
+			[
+				"bean",
+				"Assets/Scripts/BeanController.cs"
+			],
+			[
+				"enemysp",
+				"Assets/Scripts/EnemySpawner.cs"
+			],
+			[
+				"beanc",
+				"Assets/Scripts/BeanController.cs"
+			],
+			[
+				"beancon",
+				"Assets/Scripts/BeanController.cs"
+			],
+			[
+				"beanspa",
+				"Assets/Scripts/BeanSpawner.cs"
+			],
+			[
+				"mathy",
+				"Assets/Scripts/Mathy.cs"
+			],
+			[
+				"contro",
+				"app/controllers/tasks_controller.rb"
+			],
+			[
+				"ta",
+				"app/models/task.rb"
+			],
+			[
+				"runnercon",
+				"Assets/Scripts/RunnerController.cs"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": false,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 272.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
