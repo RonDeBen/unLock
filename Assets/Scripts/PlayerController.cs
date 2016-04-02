@@ -24,6 +24,8 @@ public class PlayerController : MonoBehaviour {
 	private List<int> edges = new List<int>();
 	private List<int> winningEdges = new List<int>();
 
+	private int[] edgesIn;
+
 	public GridMaker GM;
 
 	public Material line_mat;
@@ -37,6 +39,7 @@ public class PlayerController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {	
+		edgesIn = new int[GM.columnCount * GM.columnCount];
 	}
 	
 	void Update () {
@@ -60,7 +63,12 @@ public class PlayerController : MonoBehaviour {
 		if(hit.collider != null && hit.collider.gameObject.tag == "node"){
 			Node node = hit.collider.gameObject.GetComponent<Node>();
 			if(nodes.Count == 0){
-				AddNode(node);
+				if(isSolving && node.number == startNode){
+					AddNode(node);
+				}
+				else if(!isSolving){
+					AddNode(node);
+				}
 			}
 			else{
 				if(nodes[nodes.Count - 1] != node.number){//the new node is not the same as the last node
@@ -80,9 +88,17 @@ public class PlayerController : MonoBehaviour {
 			int edge = primes[nodes[nodes.Count-1]]*primes[node.number];
 			edges.Add(edge);
 
-			if(!isSolving){//the puzzle maker is playing
-				node.edgesIn++;
-			}
+
+		}
+		
+		if(!isSolving){//the puzzle maker is playing
+			node.edgesIn++;
+			edgesIn[node.number]++;
+		}
+
+		if(isSolving){
+			node.edgesIn--;
+			node.texMexsh.text = node.edgesIn.ToString();
 		}
 
 		nodes.Add(node.number);
@@ -98,11 +114,14 @@ public class PlayerController : MonoBehaviour {
 
         node.DrawSegment(line_mat, line_width);//Draws a new line segment
 
+
 	}
 
 	public void OnFinishButtonClicked(){
 		startNode = nodes[0];
 		endNode = nodes[nodes.Count - 1];
+
+		PopulateEdgesIn();
 
 		winningEdges = edges;
 
@@ -111,15 +130,24 @@ public class PlayerController : MonoBehaviour {
 		nodePoints.Clear();
 		nodeCoords.Clear();
 		edges.Clear();
+		
 
+		isSolving = true;
+	}
+
+	void PopulateEdgesIn(){
 		GameObject[] nodeObjs = GameObject.FindGameObjectsWithTag("node");
 
 		for(int k = 0; k < nodeObjs.Length; k ++){
 			Node thisNode = nodeObjs[k].GetComponent<Node>();
-			thisNode.texMexsh.text = thisNode.edgesIn.ToString();
+			thisNode.texMexsh.text = edgesIn[thisNode.number].ToString();
+			if(thisNode.number == nodes[0]){
+				thisNode.texMexsh.text += "S";
+			}
+			if(thisNode.number == nodes[nodes.Count - 1]){
+				thisNode.texMexsh.text += "E";
+			}
 		}
-
-		isSolving = true;
 	}
 
 }
