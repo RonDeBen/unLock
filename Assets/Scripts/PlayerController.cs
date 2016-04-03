@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour {
 
 	private int startNode, endNode;
 
-	public GameObject encryptorClearButton, finishButton, lock1, lock2, lock3, decryptorClearButton, timer, startButton;
+	public GameObject encryptorClearButton, finishButton, lock1, lock2, lock3, decryptorClearButton, timer, timerBackground, startButton;
 
 	private Vector3 topLeft, bottomRight;
 
@@ -178,6 +178,7 @@ public class PlayerController : MonoBehaviour {
 		lock3.SetActive(true);
 		decryptorClearButton.SetActive(true);
 		timer.SetActive(true);
+		timerBackground.SetActive(true);
 
 		DecryptionManager.StartTimer();
 	}

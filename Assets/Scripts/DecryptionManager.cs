@@ -32,10 +32,11 @@ public class DecryptionManager : MonoBehaviour {
 			float totalSeconds = (secondsForTimer - (Time.time - startTime));
 			if (totalSeconds <= 0f){
 				DecryptorLose();
+			}else{
+				float minutesLeft = Mathf.Floor(totalSeconds / 60);
+				float secondsLeft = (int)(totalSeconds % 60);
+				timerText.text = minutesLeft.ToString() + ":" + secondsLeft.ToString("00");
 			}
-			float minutesLeft = Mathf.Floor(totalSeconds / 60);
-			float secondsLeft = (int)(totalSeconds % 60);
-			timerText.text = minutesLeft.ToString() + ":" + secondsLeft.ToString("00");
 		}
 	}
 
