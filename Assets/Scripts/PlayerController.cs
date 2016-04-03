@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour {
     private int[] primes = new int[] {1,2,3,5,7,11,13,17,19,23,29,31,37,41,43,47,53,59,61,67,71,73,79,83,89,97,101,103,107,109,113,127,131,137,139,149}; 
 
     private bool isSolving = false;
+    private bool startPurgatory = false;
 
 	private List<int> nodes = new List<int>();
 	private List<Vector3> nodePoints = new List<Vector3>();
@@ -38,7 +39,7 @@ public class PlayerController : MonoBehaviour {
 
 	private int startNode, endNode;
 
-	public GameObject encryptorClearButton, finishButton, lock1, lock2, lock3, decryptorClearButton;
+	public GameObject encryptorClearButton, finishButton, lock1, lock2, lock3, decryptorClearButton, timer, startButton;
 
 	// Use this for initialization
 	void Start () {	
@@ -48,7 +49,12 @@ public class PlayerController : MonoBehaviour {
 	void Update () {
 
 		if(platform == RuntimePlatform.Android || platform == RuntimePlatform.IPhonePlayer){
-			//do later
+			if(Input.touches.Length > 0){
+				Vector2 worldPoint = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
+				RaycastHit2D hit = Physics2D.Raycast(worldPoint, Vector2.zero);
+
+				CheckPosition(hit);
+			}
 		}
 		else if (platform == RuntimePlatform.WindowsEditor || platform == RuntimePlatform.WindowsPlayer || platform == RuntimePlatform.OSXEditor || platform == RuntimePlatform.OSXPlayer){
 			if (Input.GetMouseButton(0)){
@@ -61,41 +67,43 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void CheckPosition(RaycastHit2D hit){
-		if(hit.collider != null && hit.collider.gameObject.tag == "node"){
-			Node node = hit.collider.gameObject.GetComponent<Node>();
-			if(nodes.Count == 0){
-				if(isSolving && node.number == startNode){
-					AddNode(node);
+		if(!startPurgatory){
+			if(hit.collider != null && hit.collider.gameObject.tag == "node"){
+				Node node = hit.collider.gameObject.GetComponent<Node>();
+				if(nodes.Count == 0){
+					if(isSolving && node.number == startNode){
+						AddNode(node);
+					}
+					else if(!isSolving){
+						AddNode(node);
+					}
 				}
-				else if(!isSolving){
-					AddNode(node);
-				}
-			}
-			else{
-				if(nodes[nodes.Count - 1] != node.number){//the new node is not the same as the last node
-					if(Mathf.Abs(node.row - nodeCoords[nodeCoords.Count - 1].x) <= 1 && Mathf.Abs(node.column - nodeCoords[nodeCoords.Count - 1].y) <= 1){//the node is not adjacent
-						if(!edges.Contains(primes[node.number] * primes[nodes[nodes.Count-1]])){//if the edge doesn't already exist
-							if(isSolving){
-								if(node.edgesIn > 0){
-									if(node.number == endNode){
-										if(node.edgesIn > 1){
-											AddNode(node);
-											CheckNonzeroNodeNumbers();
-										}else{
-											if(LastOneStanding()){
+				else{
+					if(nodes[nodes.Count - 1] != node.number){//the new node is not the same as the last node
+						if(Mathf.Abs(node.row - nodeCoords[nodeCoords.Count - 1].x) <= 1 && Mathf.Abs(node.column - nodeCoords[nodeCoords.Count - 1].y) <= 1){//the node is not adjacent
+							if(!edges.Contains(primes[node.number] * primes[nodes[nodes.Count-1]])){//if the edge doesn't already exist
+								if(isSolving){
+									if(node.edgesIn > 0){
+										if(node.number == endNode){
+											if(node.edgesIn > 1){
 												AddNode(node);
 												CheckNonzeroNodeNumbers();
+											}else{
+												if(LastOneStanding()){
+													AddNode(node);
+													CheckNonzeroNodeNumbers();
+												}
 											}
-										}
-									}else{
-										AddNode(node);
-										CheckNonzeroNodeNumbers();
-									}									
+										}else{
+											AddNode(node);
+											CheckNonzeroNodeNumbers();
+										}									
 
+									}
 								}
-							}
-							else{
-								AddNode(node);
+								else{
+									AddNode(node);
+								}
 							}
 						}
 					}
@@ -147,11 +155,32 @@ public class PlayerController : MonoBehaviour {
 
 	}
 
+	public void OnStartButtonClicked(){
+		MusicMiddleware.playSound("Locksmith");
+
+		startButton.SetActive(false);
+		startPurgatory = false;
+
+		PopulateEdgesIn();
+		nodes.Clear();
+		nodePoints.Clear();
+		nodeCoords.Clear();
+		edges.Clear();
+
+		isSolving = true;
+
+		lock1.SetActive(true);
+		lock2.SetActive(true);
+		lock3.SetActive(true);
+		decryptorClearButton.SetActive(true);
+		timer.SetActive(true);
+
+		DecryptionManager.StartTimer();
+	}
+
 	public void OnFinishButtonClicked(){
 		startNode = nodes[0];
 		endNode = nodes[nodes.Count - 1];
-
-		PopulateEdgesIn();
 
 		for(int k = 0; k < edges.Count; k++){
 			winningEdges.Add(edges[k]);
@@ -159,21 +188,14 @@ public class PlayerController : MonoBehaviour {
 
 		winningEdges.Sort();
 
-
 		LineSegment.RemoveAllLines();
-		nodes.Clear();
-		nodePoints.Clear();
-		nodeCoords.Clear();
-		edges.Clear();
 
-		isSolving = true;
 		finishButton.SetActive(false);
 		encryptorClearButton.SetActive(false);
 
-		lock1.SetActive(true);
-		lock2.SetActive(true);
-		lock3.SetActive(true);
-		decryptorClearButton.SetActive(true);
+		startButton.SetActive(true);
+
+		startPurgatory = true;
 	}
 
 	public void OnEncryptorClearButtonClicked(){
@@ -228,8 +250,11 @@ public class PlayerController : MonoBehaviour {
 		}
 		if(same){
 			Debug.Log("You Got It!");
+			DecryptionManager.StopTimer();
 		}else{
 			Debug.Log("You dun-diddily fucked up!");
+			DecryptionManager.BreakLock();
+			OnDecryptorClearButtonClicked();
 		}
 	}
 
