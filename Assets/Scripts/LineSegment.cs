@@ -20,7 +20,6 @@ public class LineSegment : MonoBehaviour {
     // Use this for initialization
     void Start () {
         drawnLines.Add(this);
-        Debug.Log(drawnLines.Count);
     }
 	
 	// Update is called once per frame
@@ -72,11 +71,24 @@ public class LineSegment : MonoBehaviour {
 
     public static void HideAllLines()
     {
+
+        GameObject temp = drawnLines[drawnLines.Count - 1].gameObject;
+        drawnLines.RemoveAt(drawnLines.Count - 1);
         solution = drawnLines.ToArray();
         foreach(LineSegment segment in solution)
         {
             segment.lineSegment.enabled = false;
         }
         drawnLines.Clear();
+        Destroy(temp);
+    }
+
+    public static void ShowSolution()
+    {
+        RemoveAllLines();
+        foreach (LineSegment segment in solution)
+        {
+            segment.lineSegment.enabled = true;
+        }
     }
 }

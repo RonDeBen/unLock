@@ -62,5 +62,6 @@ public class DecryptionManager : MonoBehaviour {
 		MusicMiddleware.pauseSound("Locksmith");
 		StopTimer();
 		Debug.Log("You Lose!");
+        LineSegment.ShowSolution();
 	}
 }
