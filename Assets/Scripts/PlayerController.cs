@@ -46,11 +46,11 @@ public class PlayerController : MonoBehaviour {
 	public Sprite[] wireSprites;
 	private Texture2D[] wireTextures = new Texture2D[10];
 
+	public float timeToNextFrame;
+
 	// Use this for initialization
 	void Start () {	
 		edgesIn = new int[GM.columnCount * GM.columnCount];
-
-
 
 		for(int k = 0; k < wireSprites.Length; k++){
 			Sprite sprite = wireSprites[k];
@@ -170,13 +170,13 @@ public class PlayerController : MonoBehaviour {
             LineSegment.activeSegment.FinishDrawing(node.transform.position);
         }
 
-        node.DrawSegment(line_mat, line_width, GM.topLeft.transform.position, GM.bottomRight.transform.position);//Draws a new line segment
+        node.DrawSegment(line_mat, line_width, GM.topLeft.transform.position, GM.bottomRight.transform.position, wireTextures, timeToNextFrame);//Draws a new line segment
 
 
 	}
 
 	public void OnStartButtonClicked(){
-		MusicMiddleware.loopSound("Locksmith", true);
+		MusicMiddleware.loopSound("LocksmithWAV", true);
 
 		startButton.SetActive(false);
 		startPurgatory = false;
