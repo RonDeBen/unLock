@@ -25,4 +25,10 @@ public class DoorCloser : MonoBehaviour {
         yield return new WaitForSeconds(waitTime);
         anim.SetTrigger("Close");
     }
+
+    public void OpenDoors()
+    {
+        anim.SetTrigger("Open");
+        LineSegment.RemoveAllLines();
+    }
 }
