@@ -8,6 +8,7 @@ public class DoorCloser : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         anim = GetComponent<Animator>();
+        OpenDoors();
 	}
 	
 	// Update is called once per frame
@@ -23,6 +24,7 @@ public class DoorCloser : MonoBehaviour {
     IEnumerator CloseDoors()
     {
         yield return new WaitForSeconds(waitTime);
+        MusicMiddleware.playSound("doorClose2");
         anim.SetTrigger("Close");
     }
 
