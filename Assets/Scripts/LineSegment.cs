@@ -79,10 +79,12 @@ public class LineSegment : MonoBehaviour {
     }
 
     public static void RemoveAllLines(){
-        foreach(LineSegment segment in drawnLines) { 
-            GameObject.Destroy(segment.gameObject);
+        if(drawnLines != null){
+            foreach(LineSegment segment in drawnLines) { 
+                GameObject.Destroy(segment.gameObject);
+            }
+            drawnLines.Clear();
         }
-        drawnLines.Clear();
     }
 
     public static void HideAllLines()

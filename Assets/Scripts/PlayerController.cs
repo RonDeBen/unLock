@@ -50,6 +50,10 @@ public class PlayerController : MonoBehaviour {
 
 	public Sprite baseNode, startingNode, endingNode, startingEndingNode;
 
+	void Awake(){
+		LineSegment.solution = new LineSegment[0];
+	}
+
 	// Use this for initialization
 	void Start () {	
 		edgesIn = new int[GM.columnCount * GM.columnCount];
@@ -67,7 +71,6 @@ public class PlayerController : MonoBehaviour {
 	}
 	
 	void Update () {
-
 		
 		if(Input.touches.Length > 0){
 			Vector2 worldPoint = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
@@ -253,11 +256,6 @@ public class PlayerController : MonoBehaviour {
 		PopulateEdgesIn();
         LineSegment.RemoveAllLines();
     }
-
-	public void RestartLevel(){
-		Application.LoadLevel(Application.loadedLevel);
-	}
-
 
 	void CheckNonzeroNodeNumbers(){
 		GameObject[] nodeObjs = GameObject.FindGameObjectsWithTag("node");
