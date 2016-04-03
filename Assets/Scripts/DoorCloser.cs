@@ -29,5 +29,6 @@ public class DoorCloser : MonoBehaviour {
     public void OpenDoors()
     {
         anim.SetTrigger("Open");
+        LineSegment.RemoveAllLines();
     }
 }
