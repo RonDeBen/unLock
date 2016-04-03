@@ -62,6 +62,9 @@ public class DecryptionManager : MonoBehaviour {
 		MusicMiddleware.pauseSound("Locksmith");
 		StopTimer();
 		Debug.Log("You Lose!");
+        GameObject doors =GameObject.FindGameObjectWithTag("doors");
+        Animator anim = doors.GetComponent<Animator>();
+        anim.SetTrigger("Close");
         LineSegment.ShowSolution();
 	}
 }
