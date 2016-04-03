@@ -41,6 +41,8 @@ public class PlayerController : MonoBehaviour {
 
 	public GameObject encryptorClearButton, finishButton, lock1, lock2, lock3, decryptorClearButton, timer, startButton;
 
+	private Vector3 topLeft, bottomRight;
+
 	// Use this for initialization
 	void Start () {	
 		edgesIn = new int[GM.columnCount * GM.columnCount];
@@ -150,13 +152,13 @@ public class PlayerController : MonoBehaviour {
             LineSegment.activeSegment.FinishDrawing(node.transform.position);
         }
 
-        node.DrawSegment(line_mat, line_width);//Draws a new line segment
+        node.DrawSegment(line_mat, line_width, GM.topLeft.transform.position, GM.bottomRight.transform.position);//Draws a new line segment
 
 
 	}
 
 	public void OnStartButtonClicked(){
-		MusicMiddleware.playSound("Locksmith");
+		MusicMiddleware.loopSound("Locksmith", true);
 
 		startButton.SetActive(false);
 		startPurgatory = false;

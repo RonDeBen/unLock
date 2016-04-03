@@ -19,12 +19,14 @@ public class Node : MonoBehaviour {
 	
 	}
 
-    public void DrawSegment(Material mat, float width)
+    public void DrawSegment(Material mat, float width, Vector3 topLeft, Vector3 bottomRight)
     {
         LineSegment ls = GameObject.Instantiate(lineSegment);
         ls.gameObject.tag = "lineSegment";
         ls.line_mat = mat;
         ls.line_width = width;
+        ls.topLeft = topLeft;
+        ls.bottomRight = bottomRight;
         ls.startpoint = transform.position;
         ls.StartCoroutine("StartDrawing");
     }

@@ -27,8 +27,8 @@ public class MusicMiddleware : MonoBehaviour {
         playEntry.source.Play();
     }
 
-    public void loopSound(string name, bool startAtBeginning){
-        SoundEntry playEntry = sounds.Find(item => item.sound.name == name);
+    public static void loopSound(string name, bool startAtBeginning){
+        SoundEntry playEntry = staticSounds.Find(item => item.sound.name == name);
         if(!startAtBeginning)
             playEntry.source.time = playEntry.loopStartTime;
         playEntry.source.Play();
@@ -54,8 +54,8 @@ public class MusicMiddleware : MonoBehaviour {
         playEntry.looping = true;
     }
 
-    public void pauseSound(string name){
-        SoundEntry pauseEntry = sounds.Find(item => item.sound.name == name);
+    public static void pauseSound(string name){
+        SoundEntry pauseEntry = staticSounds.Find(item => item.sound.name == name);
         pauseEntry.source.Pause();
     }
 

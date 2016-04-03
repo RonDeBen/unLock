@@ -14,6 +14,8 @@ public class LineSegment : MonoBehaviour {
     public LineRenderer lineSegment;
     private bool isDrawing = false;
 
+    public Vector3 topLeft, bottomRight;
+
     // Use this for initialization
     void Start () {
        
@@ -22,7 +24,10 @@ public class LineSegment : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         if(isDrawing && Input.GetMouseButton(0)){
-            lineSegment.SetPosition(1, new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y, 0));
+            Vector3 worldPoint = new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y, 0);
+            if(worldPoint.x > topLeft.x && worldPoint.x < bottomRight.x && worldPoint.y < topLeft.y && worldPoint.y > bottomRight.y){
+                lineSegment.SetPosition(1, worldPoint);
+            }
         }
 	}
 
