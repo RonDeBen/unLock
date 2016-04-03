@@ -63,8 +63,7 @@ public class DecryptionManager : MonoBehaviour {
 		StopTimer();
 		Debug.Log("You Lose!");
         GameObject doors =GameObject.FindGameObjectWithTag("doors");
-        Animator anim = doors.GetComponent<Animator>();
-        anim.SetTrigger("Close");
+        doors.GetComponent<DoorCloser>().StartCloseDoors();
         LineSegment.ShowSolution();
 	}
 }
