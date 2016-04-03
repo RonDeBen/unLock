@@ -6,6 +6,7 @@ public class LineSegment : MonoBehaviour {
 
     public static LineSegment activeSegment = null;
     public static List<LineSegment> drawnLines = new List<LineSegment>();
+    public static LineSegment[] solution;
 
     public Material line_mat;
     public float line_width;
@@ -18,8 +19,9 @@ public class LineSegment : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-       
-	}
+        drawnLines.Add(this);
+        Debug.Log(drawnLines.Count);
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -62,10 +64,19 @@ public class LineSegment : MonoBehaviour {
     }
 
     public static void RemoveAllLines(){
-        GameObject[] segments = GameObject.FindGameObjectsWithTag("lineSegment");
-
-        for(int k = 0; k < segments.Length; k ++){
-            Destroy(segments[k]);
+        foreach(LineSegment segment in drawnLines) { 
+            GameObject.Destroy(segment.gameObject);
         }
+        drawnLines.Clear();
+    }
+
+    public static void HideAllLines()
+    {
+        solution = drawnLines.ToArray();
+        foreach(LineSegment segment in solution)
+        {
+            segment.lineSegment.enabled = false;
+        }
+        drawnLines.Clear();
     }
 }

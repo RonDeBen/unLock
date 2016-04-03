@@ -190,7 +190,14 @@ public class PlayerController : MonoBehaviour {
 
 		winningEdges.Sort();
 
-		LineSegment.RemoveAllLines();
+        if (isSolving)
+        {
+            LineSegment.RemoveAllLines();
+        }
+        else
+        {
+            LineSegment.HideAllLines();
+        }
 
 		finishButton.SetActive(false);
 		encryptorClearButton.SetActive(false);
