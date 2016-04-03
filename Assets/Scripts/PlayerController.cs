@@ -227,6 +227,10 @@ public class PlayerController : MonoBehaviour {
 		PopulateEdgesIn();
 	}
 
+	public void RestartLevel(){
+		Application.LoadLevel(Application.loadedLevel);
+	}
+
 
 	void CheckNonzeroNodeNumbers(){
 		GameObject[] nodeObjs = GameObject.FindGameObjectsWithTag("node");
