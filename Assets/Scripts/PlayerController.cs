@@ -73,7 +73,9 @@ public class PlayerController : MonoBehaviour {
 			if(hit.collider != null && hit.collider.gameObject.tag == "node"){
 				Node node = hit.collider.gameObject.GetComponent<Node>();
 				if(nodes.Count == 0){
-					if(isSolving && node.number == startNode){
+                    LineSegment.RemoveAllLines();//This line resolves the drawing a line from the endpoint problem
+                    if (isSolving && node.number == startNode){
+                        
 						AddNode(node);
 					}
 					else if(!isSolving){
@@ -226,13 +228,14 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	public void OnDecryptorClearButtonClicked(){
-		LineSegment.RemoveAllLines();
+		
 		nodes.Clear();
 		nodePoints.Clear();
 		nodeCoords.Clear();
 		edges.Clear();
 		PopulateEdgesIn();
-	}
+        LineSegment.RemoveAllLines();
+    }
 
 	public void RestartLevel(){
 		Application.LoadLevel(Application.loadedLevel);
