@@ -15,6 +15,9 @@ public class DecryptionManager : MonoBehaviour {
 
 	private static GameObject[] locks = new GameObject[3];
 
+    string lockPrompt = "Assign Pattern Lock";
+    string hackFail = "Hack Failed";
+
 	void Start () {
 		timerText = timerObj.GetComponent<Text>();
 		locksLeft = 3;

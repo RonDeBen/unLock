@@ -247,18 +247,24 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void CheckShape(){
+        int hits = 0;
 		edges.Sort();
 		bool same = true;
 		for(int k = 0; k < edges.Count; k ++){
-			if(edges[k] != winningEdges[k]){
-				same = false;
-			}
+            if (edges[k] != winningEdges[k])
+            {
+                same = false;
+            }
+            else
+                hits++;
 		}
+        int wrong = edges.Count - hits;
 		if(same){
 			Debug.Log("You Got It!");
 			DecryptionManager.StopTimer();
 		}else{
-			Debug.Log("You dun-diddily fucked up!");
+            string count = "Correct egdes: " + hits + " Incorrect egdes: " + wrong;
+			Debug.Log(count);
 			DecryptionManager.BreakLock();
 			OnDecryptorClearButtonClicked();
 		}
