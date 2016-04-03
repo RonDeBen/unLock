@@ -32,7 +32,7 @@ public class GridMaker : MonoBehaviour {
 	private float width, height;
 
 	// Use this for initialization
-	void Start () {
+	void Awake() {
 		width = bottomRight.transform.position.x - topLeft.transform.position.x;
 		height = topLeft.transform.position.y - bottomRight.transform.position.y;
 		box_width = width / columnCount;

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour {
 
@@ -24,8 +25,6 @@ public class PlayerController : MonoBehaviour {
 	private List<int> edges = new List<int>();
 	private List<int> winningEdges = new List<int>();
 
-	private GameObject[] nodeObjs;
-
 	private int[] edgesIn;
 
 	public GridMaker GM;
@@ -39,10 +38,11 @@ public class PlayerController : MonoBehaviour {
 
 	private int startNode, endNode;
 
+	public GameObject encryptorClearButton, finishButton, lock1, lock2, lock3, decryptorClearButton;
+
 	// Use this for initialization
 	void Start () {	
 		edgesIn = new int[GM.columnCount * GM.columnCount];
-		GameObject[] nodeObjs = GameObject.FindGameObjectsWithTag("node");
 	}
 	
 	void Update () {
@@ -52,12 +52,10 @@ public class PlayerController : MonoBehaviour {
 		}
 		else if (platform == RuntimePlatform.WindowsEditor || platform == RuntimePlatform.WindowsPlayer || platform == RuntimePlatform.OSXEditor || platform == RuntimePlatform.OSXPlayer){
 			if (Input.GetMouseButton(0)){
-
 				Vector2 worldPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 				RaycastHit2D hit = Physics2D.Raycast(worldPoint,Vector2.zero);
 
 				CheckPosition(hit);
-
 			}
 		}
 	}
@@ -79,7 +77,21 @@ public class PlayerController : MonoBehaviour {
 						if(!edges.Contains(primes[node.number] * primes[nodes[nodes.Count-1]])){//if the edge doesn't already exist
 							if(isSolving){
 								if(node.edgesIn > 0){
-									AddNode(node);
+									if(node.number == endNode){
+										if(node.edgesIn > 1){
+											AddNode(node);
+											CheckNonzeroNodeNumbers();
+										}else{
+											if(LastOneStanding()){
+												AddNode(node);
+												CheckNonzeroNodeNumbers();
+											}
+										}
+									}else{
+										AddNode(node);
+										CheckNonzeroNodeNumbers();
+									}									
+
 								}
 							}
 							else{
@@ -92,13 +104,21 @@ public class PlayerController : MonoBehaviour {
 		}
 	}
 
+	bool LastOneStanding(){
+		int total = 0;
+		GameObject[] nodeObjs = GameObject.FindGameObjectsWithTag("node");
+		for(int k = 0; k < nodeObjs.Length; k ++){
+			Node thisNode = nodeObjs[k].GetComponent<Node>();
+			total += thisNode.edgesIn;
+		}
+		return (total == 1);
+	}
+
 	void AddNode(Node node){
 
 		if(nodes.Count > 0){
 			int edge = primes[nodes[nodes.Count-1]]*primes[node.number];
 			edges.Add(edge);
-
-
 		}
 
 		if(!isSolving){//the puzzle maker is playing
@@ -133,30 +153,108 @@ public class PlayerController : MonoBehaviour {
 
 		PopulateEdgesIn();
 
-		winningEdges = edges;
+		for(int k = 0; k < edges.Count; k++){
+			winningEdges.Add(edges[k]);
+		}
+
+		winningEdges.Sort();
+
 
 		LineSegment.RemoveAllLines();
 		nodes.Clear();
 		nodePoints.Clear();
 		nodeCoords.Clear();
 		edges.Clear();
-		
 
 		isSolving = true;
+		finishButton.SetActive(false);
+		encryptorClearButton.SetActive(false);
+
+		lock1.SetActive(true);
+		lock2.SetActive(true);
+		lock3.SetActive(true);
+		decryptorClearButton.SetActive(true);
 	}
 
+	public void OnEncryptorClearButtonClicked(){
+		LineSegment.RemoveAllLines();
+		nodes.Clear();
+		nodePoints.Clear();
+		nodeCoords.Clear();
+		edges.Clear();
+		/*for(int k = 0; k < edgesIn.Length; k++){
+			edgesIn[k] = 0;
+		} */
+
+		GameObject[] nodeObjs = GameObject.FindGameObjectsWithTag("node");
+
+		for(int k = 0; k < nodeObjs.Length; k ++){
+			Node thisNode = nodeObjs[k].GetComponent<Node>();
+			thisNode.edgesIn = 0;
+		}
+	}
+
+	public void OnDecryptorClearButtonClicked(){
+		LineSegment.RemoveAllLines();
+		nodes.Clear();
+		nodePoints.Clear();
+		nodeCoords.Clear();
+		edges.Clear();
+		PopulateEdgesIn();
+	}
+
+
 	void CheckNonzeroNodeNumbers(){
+		GameObject[] nodeObjs = GameObject.FindGameObjectsWithTag("node");
+		bool validShape = true;
+		for(int k = 0; k < nodeObjs.Length; k++){
+			Node thisNode = nodeObjs[k].GetComponent<Node>();
+			if(thisNode.edgesIn != 0){
+				validShape = false;
+			}
+		}
+		if(validShape){
+			CheckShape();
+		}
+	}
+
+	void CheckShape(){
+		edges.Sort();
+		bool same = true;
+		for(int k = 0; k < edges.Count; k ++){
+			if(edges[k] != winningEdges[k]){
+				same = false;
+			}
+		}
+		if(same){
+			Debug.Log("You Got It!");
+		}else{
+			Debug.Log("You dun-diddily fucked up!");
+		}
 	}
 
 	void PopulateEdgesIn(){
+
+		GameObject[] nodeObjs = GameObject.FindGameObjectsWithTag("node");
+
 		for(int k = 0; k < nodeObjs.Length; k ++){
 			Node thisNode = nodeObjs[k].GetComponent<Node>();
 			thisNode.texMexsh.text = edgesIn[thisNode.number].ToString();
-			if(thisNode.number == nodes[0]){
-				thisNode.texMexsh.text += "S";
-			}
-			if(thisNode.number == nodes[nodes.Count - 1]){
-				thisNode.texMexsh.text += "E";
+			if(!isSolving){
+				if(thisNode.number == nodes[0]){
+					thisNode.texMexsh.text += "S";
+				}
+				if(thisNode.number == nodes[nodes.Count - 1]){
+					thisNode.texMexsh.text += "E";
+				}
+			}else{
+				thisNode.edgesIn = edgesIn[thisNode.number];
+				if(thisNode.number == startNode){
+					thisNode.texMexsh.text += "S";
+				}
+				if(thisNode.number == endNode){
+					thisNode.texMexsh.text += "E";
+				}
 			}
 		}
 	}
