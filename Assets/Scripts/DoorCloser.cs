@@ -30,6 +30,7 @@ public class DoorCloser : MonoBehaviour {
 
     public void OpenDoors()
     {
+        MusicMiddleware.playSound("unlockDoor");
         anim.SetTrigger("Open");
         LineSegment.RemoveAllLines();
     }
