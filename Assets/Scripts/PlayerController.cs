@@ -216,9 +216,9 @@ public class PlayerController : MonoBehaviour {
 		nodePoints.Clear();
 		nodeCoords.Clear();
 		edges.Clear();
-		/*for(int k = 0; k < edgesIn.Length; k++){
+		for(int k = 0; k < edgesIn.Length; k++){
 			edgesIn[k] = 0;
-		} */
+		} 
 
 		GameObject[] nodeObjs = GameObject.FindGameObjectsWithTag("node");
 
