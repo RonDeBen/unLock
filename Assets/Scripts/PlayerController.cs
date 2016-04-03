@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour {
 
 	private int startNode, endNode;
 
-	public GameObject encryptorClearButton, finishButton, decryptorClearButton, timer, timerBackground, startButton;
+	public GameObject encryptorClearButton, finishButton, decryptorClearButton, timer, timerBackground, startButton, newEncryptionButton;
 
 	private Vector3 topLeft, bottomRight;
 
@@ -287,14 +287,25 @@ public class PlayerController : MonoBehaviour {
 		}
         int wrong = edges.Count - hits;
 		if(same){
-			Debug.Log("You Got It!");
-			DecryptionManager.StopTimer();
+			Win();
 		}else{
             string count = "Correct egdes: " + hits + " Incorrect egdes: " + wrong;
 			Debug.Log(count);
 			// DecryptionManager.BreakLock();
 			OnDecryptorClearButtonClicked();
 		}
+	}
+
+	void Win(){
+		DecryptionManager.StopTimer();
+		decryptorClearButton.SetActive(false);
+		timerBackground.SetActive(false);
+		timer.SetActive(false);
+		newEncryptionButton.SetActive(true);
+	}
+
+	public void OnNewEncryptionButtonClicked(){
+		Application.LoadLevel(Application.loadedLevel);
 	}
 
 	void PopulateEdgesIn(){
