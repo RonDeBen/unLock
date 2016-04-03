@@ -43,9 +43,25 @@ public class PlayerController : MonoBehaviour {
 
 	private Vector3 topLeft, bottomRight;
 
+	public Sprite[] wireSprites;
+	private Texture2D[] wireTextures = new Texture2D[10];
+
 	// Use this for initialization
 	void Start () {	
 		edgesIn = new int[GM.columnCount * GM.columnCount];
+
+
+
+		for(int k = 0; k < wireSprites.Length; k++){
+			Sprite sprite = wireSprites[k];
+			wireTextures[k] = new Texture2D( (int)sprite.rect.width, (int)sprite.rect.height);
+			Color[] pixels = sprite.texture.GetPixels((int)sprite.textureRect.x, 
+			                                         (int)sprite.textureRect.y, 
+			                                         (int)sprite.textureRect.width, 
+			                                         (int)sprite.textureRect.height);
+			wireTextures[k].SetPixels(pixels);
+			wireTextures[k].Apply();
+		}
 	}
 	
 	void Update () {
