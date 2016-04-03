@@ -11,7 +11,8 @@ public class DecryptionManager : MonoBehaviour {
 	private Text timerText;
 	private static bool clockIsTicking = false;
 
-	public GameObject lock1, lock2, lock3;
+	public GameObject playerControllr;
+	private static PlayerController PC;
 
 	private static GameObject[] locks = new GameObject[3];
 
@@ -19,12 +20,10 @@ public class DecryptionManager : MonoBehaviour {
     string hackFail = "Hack Failed";
 
 	void Start () {
+		PC = playerControllr.GetComponent<PlayerController>();
+
 		timerText = timerObj.GetComponent<Text>();
 		locksLeft = 3;
-
-		locks[0] = lock3;
-		locks[1] = lock2;
-		locks[2] = lock1;
 	}
 	
 	void FixedUpdate () {
@@ -40,15 +39,15 @@ public class DecryptionManager : MonoBehaviour {
 		}
 	}
 
-	public static void BreakLock(){
-		locksLeft--;
+	// public static void BreakLock(){
+	// 	locksLeft--;
 
-		locks[locksLeft].SetActive(false);//change this to modifying a sprite/playing a sound when a lock breaks
+	// 	locks[locksLeft].SetActive(false);//change this to modifying a sprite/playing a sound when a lock breaks
 
-		if(locksLeft == 0){
-			DecryptorLose();
-		}
-	}
+	// 	if(locksLeft == 0){
+	// 		DecryptorLose();
+	// 	}
+	// }
 
 	public static void StartTimer(){
 		clockIsTicking = true;
@@ -60,6 +59,7 @@ public class DecryptionManager : MonoBehaviour {
 	}
 
 	public static void DecryptorLose(){
+		PC.DisableControls();
 		MusicMiddleware.pauseSound("Locksmith");
 		StopTimer();
 		Debug.Log("You Lose!");

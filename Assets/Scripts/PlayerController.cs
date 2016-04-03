@@ -276,7 +276,7 @@ public class PlayerController : MonoBehaviour {
 		}else{
             string count = "Correct egdes: " + hits + " Incorrect egdes: " + wrong;
 			Debug.Log(count);
-			DecryptionManager.BreakLock();
+			// DecryptionManager.BreakLock();
 			OnDecryptorClearButtonClicked();
 		}
 	}
@@ -305,6 +305,10 @@ public class PlayerController : MonoBehaviour {
 				}
 			}
 		}
+	}
+
+	public void DisableControls(){
+		startPurgatory = true;
 	}
 
 }
