@@ -211,6 +211,7 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	public void OnEncryptorClearButtonClicked(){
+        GameObject.FindObjectOfType<DoorCloser>().OpenDoors();//test purposes
 		LineSegment.RemoveAllLines();
 		nodes.Clear();
 		nodePoints.Clear();
