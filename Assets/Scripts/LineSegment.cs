@@ -17,9 +17,15 @@ public class LineSegment : MonoBehaviour {
 
     public Vector3 topLeft, bottomRight;
 
+    public Texture2D[] wireTextures;
+    public float timeForNextFrame;
+    private float lastFrameTime;
+    private int currentFrame = 0;
+
     // Use this for initialization
     void Start () {
         drawnLines.Add(this);
+        lastFrameTime = Time.time;
     }
 	
 	// Update is called once per frame
@@ -31,6 +37,16 @@ public class LineSegment : MonoBehaviour {
             }
         }
 	}
+
+    void FixedUpdate(){
+        if(Time.time > (lastFrameTime + timeForNextFrame)){
+            lastFrameTime = Time.time;
+            currentFrame = (currentFrame + 1) % wireTextures.Length;
+            for(int k = 0; k < drawnLines.Count; k++){
+                drawnLines[k].line_mat.mainTexture = wireTextures[currentFrame];
+            }
+        }
+    }
 
     public IEnumerator StartDrawing()
     {
@@ -89,6 +105,12 @@ public class LineSegment : MonoBehaviour {
         foreach (LineSegment segment in solution)
         {
             segment.lineSegment.enabled = true;
+        }
+    }
+
+    private void LoopTextures(){
+        if(Time.time > (lastFrameTime + timeForNextFrame)){
+
         }
     }
 }
