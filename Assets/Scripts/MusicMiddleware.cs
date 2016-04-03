@@ -32,6 +32,7 @@ public class MusicMiddleware : MonoBehaviour {
         if(!startAtBeginning)
             playEntry.source.time = playEntry.loopStartTime;
         playEntry.source.Play();
+        playEntry.source.volume = playEntry.volume;
         playEntry.looping = true;
     }
 
@@ -65,7 +66,7 @@ public class MusicMiddleware : MonoBehaviour {
         }
     }
 
-    void Start() {
+    void Awake() {
         foreach(SoundEntry sound in sounds){
             sound.source = gameObject.AddComponent<AudioSource>() as AudioSource;
             sound.source.clip = sound.sound;

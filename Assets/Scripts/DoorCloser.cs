@@ -5,10 +5,12 @@ public class DoorCloser : MonoBehaviour {
 
     Animator anim;
     public float waitTime = 2f;
+    public float openDoorPause = 0.3f;
 	// Use this for initialization
 	void Start () {
         anim = GetComponent<Animator>();
-        OpenDoors();
+        // OpenDoors();
+        StartCoroutine(StartOpenDoors());
 	}
 	
 	// Update is called once per frame
@@ -28,10 +30,10 @@ public class DoorCloser : MonoBehaviour {
         anim.SetTrigger("Close");
     }
 
-    public void OpenDoors()
-    {
-        MusicMiddleware.playSound("unlockDoor");
+    IEnumerator StartOpenDoors(){
         anim.SetTrigger("Open");
         LineSegment.RemoveAllLines();
+        yield return new WaitForSeconds(openDoorPause);
+        MusicMiddleware.playSound("unlockDoor");
     }
 }

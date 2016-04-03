@@ -60,7 +60,7 @@ public class DecryptionManager : MonoBehaviour {
 
 	public static void DecryptorLose(){
 		PC.DisableControls();
-		MusicMiddleware.pauseSound("Locksmith");
+		MusicMiddleware.pauseSound("LocksmithWAV");
 		StopTimer();
 		Debug.Log("You Lose!");
         GameObject doors =GameObject.FindGameObjectWithTag("doors");

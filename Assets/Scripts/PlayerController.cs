@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour {
 
 	private int startNode, endNode;
 
-	public GameObject encryptorClearButton, finishButton, lock1, lock2, lock3, decryptorClearButton, timer, timerBackground, startButton;
+	public GameObject encryptorClearButton, finishButton, decryptorClearButton, timer, timerBackground, startButton;
 
 	private Vector3 topLeft, bottomRight;
 
@@ -47,6 +47,8 @@ public class PlayerController : MonoBehaviour {
 	private Texture2D[] wireTextures = new Texture2D[10];
 
 	public float timeToNextFrame;
+
+	public Sprite baseNode, startingNode, endingNode, startingEndingNode;
 
 	// Use this for initialization
 	void Start () {	
@@ -143,6 +145,7 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void AddNode(Node node){
+		MusicMiddleware.playSound("node_touch");
 
 		if(nodes.Count > 0){
 			int edge = primes[nodes[nodes.Count-1]]*primes[node.number];
@@ -188,10 +191,7 @@ public class PlayerController : MonoBehaviour {
 		edges.Clear();
 
 		isSolving = true;
-
-		lock1.SetActive(true);
-		lock2.SetActive(true);
-		lock3.SetActive(true);
+		
 		decryptorClearButton.SetActive(true);
 		timer.SetActive(true);
 		timerBackground.SetActive(true);
@@ -306,18 +306,15 @@ public class PlayerController : MonoBehaviour {
 			thisNode.texMexsh.text = edgesIn[thisNode.number].ToString();
 			if(!isSolving){
 				if(thisNode.number == nodes[0]){
-					thisNode.texMexsh.text += "S";
+					if(thisNode.number == nodes[nodes.Count - 1]){
+						thisNode.changeSprite(startingEndingNode);
+					}
+					else{
+						thisNode.changeSprite(startingNode);
+					}
 				}
 				if(thisNode.number == nodes[nodes.Count - 1]){
-					thisNode.texMexsh.text += "E";
-				}
-			}else{
-				thisNode.edgesIn = edgesIn[thisNode.number];
-				if(thisNode.number == startNode){
-					thisNode.texMexsh.text += "S";
-				}
-				if(thisNode.number == endNode){
-					thisNode.texMexsh.text += "E";
+					thisNode.changeSprite(endingNode);
 				}
 			}
 		}

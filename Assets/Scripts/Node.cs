@@ -9,9 +9,13 @@ public class Node : MonoBehaviour {
 
     public TextMesh texMexsh;
 
+    // public Sprite nodeSprite;
+    private SpriteRenderer nodeSpriteRenderer;
+
 	// Use this for initialization
 	void Start () {
 		texMexsh = gameObject.GetComponentInChildren<TextMesh>();
+        nodeSpriteRenderer = gameObject.GetComponentInChildren<SpriteRenderer>();
 	}
 	
 	// Update is called once per frame
@@ -31,5 +35,9 @@ public class Node : MonoBehaviour {
         ls.wireTextures = wireTextures;
         ls.timeForNextFrame = timeForNextFrame;
         ls.StartCoroutine("StartDrawing");
+    }
+
+    public void changeSprite(Sprite newSprite){
+       nodeSpriteRenderer.sprite = newSprite;
     }
 }
