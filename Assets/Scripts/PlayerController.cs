@@ -50,22 +50,22 @@ public class PlayerController : MonoBehaviour {
 	
 	void Update () {
 
-		if(platform == RuntimePlatform.Android || platform == RuntimePlatform.IPhonePlayer){
-			if(Input.touches.Length > 0){
-				Vector2 worldPoint = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
-				RaycastHit2D hit = Physics2D.Raycast(worldPoint, Vector2.zero);
+		
+		if(Input.touches.Length > 0){
+			Vector2 worldPoint = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
+			RaycastHit2D hit = Physics2D.Raycast(worldPoint, Vector2.zero);
 
-				CheckPosition(hit);
-			}
+			CheckPosition(hit);
 		}
-		else if (platform == RuntimePlatform.WindowsEditor || platform == RuntimePlatform.WindowsPlayer || platform == RuntimePlatform.OSXEditor || platform == RuntimePlatform.OSXPlayer){
-			if (Input.GetMouseButton(0)){
-				Vector2 worldPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-				RaycastHit2D hit = Physics2D.Raycast(worldPoint,Vector2.zero);
+		
+		
+		if (Input.GetMouseButton(0)){
+			Vector2 worldPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+			RaycastHit2D hit = Physics2D.Raycast(worldPoint,Vector2.zero);
 
-				CheckPosition(hit);
-			}
+			CheckPosition(hit);
 		}
+		
 	}
 
 	void CheckPosition(RaycastHit2D hit){
