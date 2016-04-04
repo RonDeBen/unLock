@@ -248,6 +248,7 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	public void OnDecryptorClearButtonClicked(){
+
 		
 		nodes.Clear();
 		nodePoints.Clear();
@@ -313,6 +314,7 @@ public class PlayerController : MonoBehaviour {
 		for(int k = 0; k < nodeObjs.Length; k ++){
 			Node thisNode = nodeObjs[k].GetComponent<Node>();
 			thisNode.texMexsh.text = edgesIn[thisNode.number].ToString();
+			thisNode.edgesIn = edgesIn[thisNode.number];
 			if(!isSolving){
 				if(thisNode.number == nodes[0]){
 					if(thisNode.number == nodes[nodes.Count - 1]){
