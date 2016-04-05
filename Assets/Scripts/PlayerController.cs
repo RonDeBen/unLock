@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour {
     private int[] primes = new int[] {1,2,3,5,7,11,13,17,19,23,29,31,37,41,43,47,53,59,61,67,71,73,79,83,89,97,101,103,107,109,113,127,131,137,139,149}; 
 
     private bool isSolving = false;
+    [HideInInspector]
     public bool startPurgatory = false;
 
 	private List<int> nodes = new List<int>();
@@ -49,6 +50,10 @@ public class PlayerController : MonoBehaviour {
 	public float timeToNextFrame;
 
 	public Sprite baseNode, startingNode, endingNode, startingEndingNode;
+
+	public GameObject doorsObj;
+
+	private bool canMakeNewEncryption = false;
 
 	void Awake(){
 		LineSegment.solution = new LineSegment[0];
@@ -203,30 +208,32 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	public void OnFinishButtonClicked(){
-		startNode = nodes[0];
-		endNode = nodes[nodes.Count - 1];
+		if(nodes.Count > 1){
+			startNode = nodes[0];
+			endNode = nodes[nodes.Count - 1];
 
-		for(int k = 0; k < edges.Count; k++){
-			winningEdges.Add(edges[k]);
+			for(int k = 0; k < edges.Count; k++){
+				winningEdges.Add(edges[k]);
+			}
+
+			winningEdges.Sort();
+
+	        if (isSolving)
+	        {
+	            LineSegment.RemoveAllLines();
+	        }
+	        else
+	        {
+	            LineSegment.HideAllLines();
+	        }
+
+			finishButton.SetActive(false);
+			encryptorClearButton.SetActive(false);
+
+			startButton.SetActive(true);
+
+			startPurgatory = true;
 		}
-
-		winningEdges.Sort();
-
-        if (isSolving)
-        {
-            LineSegment.RemoveAllLines();
-        }
-        else
-        {
-            LineSegment.HideAllLines();
-        }
-
-		finishButton.SetActive(false);
-		encryptorClearButton.SetActive(false);
-
-		startButton.SetActive(true);
-
-		startPurgatory = true;
 	}
 
 	public void OnEncryptorClearButtonClicked(){
@@ -248,14 +255,12 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	public void OnDecryptorClearButtonClicked(){
-
-		
 		nodes.Clear();
 		nodePoints.Clear();
 		nodeCoords.Clear();
 		edges.Clear();
 		PopulateEdgesIn();
-        LineSegment.RemoveAllLines();
+	    LineSegment.RemoveAllLines();
     }
 
 	void CheckNonzeroNodeNumbers(){
@@ -286,16 +291,17 @@ public class PlayerController : MonoBehaviour {
 		}
         int wrong = edges.Count - hits;
 		if(same){
-			Win();
+			canMakeNewEncryption = true;
+			EndGame();
 		}else{
-            string count = "Correct egdes: " + hits + " Incorrect egdes: " + wrong;
-			Debug.Log(count);
-			// DecryptionManager.BreakLock();
+   //          string count = "Correct egdes: " + hits + " Incorrect egdes: " + wrong;
+			// Debug.Log(count);
 			OnDecryptorClearButtonClicked();
 		}
 	}
 
-	void Win(){
+	public void EndGame(){
+		MusicMiddleware.pauseSound("LocksmithWAV");
 		DecryptionManager.StopTimer();
 		decryptorClearButton.SetActive(false);
 		timerBackground.SetActive(false);
@@ -304,7 +310,39 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	public void OnNewEncryptionButtonClicked(){
-		Application.LoadLevel(Application.loadedLevel);
+		if(canMakeNewEncryption){
+			startPurgatory = false;
+			nodes.Clear();
+			nodePoints.Clear();
+			nodeCoords.Clear();
+			edges.Clear();
+			winningEdges.Clear();
+
+			GameObject[] nodeObjs = GameObject.FindGameObjectsWithTag("node");
+
+			for(int k = 0; k < nodeObjs.Length; k ++){
+				Node thisNode = nodeObjs[k].GetComponent<Node>();
+				thisNode.texMexsh.text = "";
+				thisNode.changeSprite(baseNode);
+				thisNode.edgesIn = 0;
+			}
+
+			for(int k = 0; k < edgesIn.Length; k++){
+				edgesIn[k] = 0;
+			}
+
+		    LineSegment.FinalLineSolution();
+
+		    newEncryptionButton.SetActive(false);
+
+		    encryptorClearButton.SetActive(true);
+		    finishButton.SetActive(true);
+
+		    isSolving = false;
+
+			doorsObj.GetComponent<DoorCloser>().OpenDoorsIfClosed();
+			canMakeNewEncryption = false;
+		}
 	}
 
 	void PopulateEdgesIn(){
@@ -333,6 +371,10 @@ public class PlayerController : MonoBehaviour {
 
 	public void DisableControls(){
 		startPurgatory = true;
+	}
+
+	public void EnableNewEncryption(){
+		canMakeNewEncryption = true;
 	}
 
 }

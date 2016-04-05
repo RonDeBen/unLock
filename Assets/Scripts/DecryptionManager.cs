@@ -39,16 +39,6 @@ public class DecryptionManager : MonoBehaviour {
 		}
 	}
 
-	// public static void BreakLock(){
-	// 	locksLeft--;
-
-	// 	locks[locksLeft].SetActive(false);//change this to modifying a sprite/playing a sound when a lock breaks
-
-	// 	if(locksLeft == 0){
-	// 		DecryptorLose();
-	// 	}
-	// }
-
 	public static void StartTimer(){
 		clockIsTicking = true;
 		startTime = Time.time;
@@ -60,6 +50,7 @@ public class DecryptionManager : MonoBehaviour {
 
 	public static void DecryptorLose(){
 		PC.DisableControls();
+		PC.EndGame();
 		MusicMiddleware.pauseSound("LocksmithWAV");
 		StopTimer();
 		Debug.Log("You Lose!");

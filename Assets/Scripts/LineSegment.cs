@@ -79,12 +79,28 @@ public class LineSegment : MonoBehaviour {
     }
 
     public static void RemoveAllLines(){
-        if(drawnLines != null){
+        if(drawnLines.Count > 0){
             foreach(LineSegment segment in drawnLines) { 
                 GameObject.Destroy(segment.gameObject);
             }
             drawnLines.Clear();
         }
+    }
+
+    public static void RemoveAllSolutionLines(){
+        for(int k = 0; k < solution.Length; k++){
+            Debug.Log("fat cocks");
+            GameObject.Destroy(solution[k]);
+        }
+    }
+
+    public static void FinalLineSolution(){
+        GameObject[] allLines = GameObject.FindGameObjectsWithTag("lineSegment");
+
+        foreach(GameObject segment in allLines){
+            GameObject.Destroy(segment);
+        }
+        drawnLines.Clear();
     }
 
     public static void HideAllLines()

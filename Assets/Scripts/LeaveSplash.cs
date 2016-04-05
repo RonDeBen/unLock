@@ -12,7 +12,7 @@ public class LeaveSplash : MonoBehaviour {
 	void Update () {
         if (Input.anyKey || Input.touches.Length > 0)
         {
-            Application.LoadLevel(0);
+            Application.LoadLevel("unnecessary_ron_scene");
         }
 	}
 }
