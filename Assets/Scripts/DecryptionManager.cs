@@ -51,7 +51,6 @@ public class DecryptionManager : MonoBehaviour {
 	public static void DecryptorLose(){
 		PC.DisableControls();
 		PC.EndGame();
-		MusicMiddleware.pauseSound("LocksmithWAV");
 		StopTimer();
 		Debug.Log("You Lose!");
         GameObject doors =GameObject.FindGameObjectWithTag("doors");
