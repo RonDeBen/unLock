@@ -36,16 +36,17 @@ public class LineSegment : MonoBehaviour {
                 lineSegment.SetPosition(1, worldPoint);
             }
         }
-	}
 
-    void FixedUpdate(){
-        if(Time.time > (lastFrameTime + timeForNextFrame)){
+        if (Time.time > (lastFrameTime + timeForNextFrame))
+        {
             lastFrameTime = Time.time;
             currentFrame = (currentFrame + 1) % wireTextures.Length;
-            for(int k = 0; k < drawnLines.Count; k++){
-                drawnLines[k].line_mat.mainTexture = wireTextures[currentFrame];
-            }
+            this.line_mat.mainTexture = wireTextures[currentFrame];
         }
+    }
+
+    void FixedUpdate(){
+        
     }
 
     public IEnumerator StartDrawing()
@@ -89,7 +90,6 @@ public class LineSegment : MonoBehaviour {
 
     public static void RemoveAllSolutionLines(){
         for(int k = 0; k < solution.Length; k++){
-            Debug.Log("fat cocks");
             GameObject.Destroy(solution[k]);
         }
     }

@@ -1,0 +1,9 @@
+diff a/Assets/Scripts/DecryptionManager.cs b/Assets/Scripts/DecryptionManager.cs	(rejected hunks)
+@@ -50,6 +50,7 @@
+ 
+ 	public static void DecryptorLose(){
+ 		PC.DisableControls();
++		PC.EndGame();
+ 		MusicMiddleware.pauseSound("LocksmithWAV");
+ 		StopTimer();
+ 		Debug.Log("You Lose!");
